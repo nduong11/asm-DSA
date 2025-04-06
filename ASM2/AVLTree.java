@@ -1,9 +1,10 @@
-package asm;
+package ASM2;
 
 import java.util.ArrayList;
 import java.util.List;
 
 class AVLTree {
+
     Node root;
 
     int getHeight(Node node) {
@@ -41,7 +42,9 @@ class AVLTree {
     }
 
     Node insertNode(Node node, SinhVien sinhVien) {
-        if (node == null) return new Node(sinhVien);
+        if (node == null) {
+            return new Node(sinhVien);
+        }
 
         if (sinhVien.id < node.sinhVien.id) {
             node.left = insertNode(node.left, sinhVien);
@@ -79,7 +82,9 @@ class AVLTree {
     }
 
     Node deleteNode(Node node, int id) {
-        if (node == null) return null;
+        if (node == null) {
+            return null;
+        }
 
         if (id < node.sinhVien.id) {
             node.left = deleteNode(node.left, id);
@@ -88,8 +93,11 @@ class AVLTree {
         } else {
             if (node.left == null || node.right == null) {
                 Node temp = (node.left != null) ? node.left : node.right;
-                if (temp == null) return null;
-                else return temp;
+                if (temp == null) {
+                    return null; 
+                }else {
+                    return temp;
+                }
             } else {
                 Node successor = findMinValueNode(node.right);
                 node.sinhVien = successor.sinhVien;
@@ -97,7 +105,9 @@ class AVLTree {
             }
         }
 
-        if (node == null) return null;
+        if (node == null) {
+            return null;
+        }
 
         node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
         int balance = getBalance(node);
@@ -125,7 +135,9 @@ class AVLTree {
     }
 
     Node findMinValueNode(Node node) {
-        while (node.left != null) node = node.left;
+        while (node.left != null) {
+            node = node.left;
+        }
         return node;
     }
 
@@ -135,7 +147,9 @@ class AVLTree {
     }
 
     private SinhVien searchByIdNode(Node node, int id) {
-        if (node == null) return null;
+        if (node == null) {
+            return null;
+        }
 
         if (id == node.sinhVien.id) {
             return node.sinhVien;
@@ -154,7 +168,9 @@ class AVLTree {
     }
 
     private void searchByIdRangeNode(Node node, int minId, int maxId, List<SinhVien> result) {
-        if (node == null) return;
+        if (node == null) {
+            return;
+        }
 
         if (node.sinhVien.id < minId) {
             searchByIdRangeNode(node.right, minId, maxId, result);
@@ -174,8 +190,11 @@ class AVLTree {
 
         // Sắp xếp theo điểm giảm dần (điểm cao = rank thấp)
         students.sort((s1, s2) -> {
-            if (s2.diem != s1.diem) return Double.compare(s2.diem, s1.diem);
-            else return Integer.compare(s1.id, s2.id);
+            if (s2.diem != s1.diem) {
+                return Double.compare(s2.diem, s1.diem); 
+            }else {
+                return Integer.compare(s1.id, s2.id);
+            }
         });
 
         // Gán rank
@@ -211,10 +230,10 @@ class AVLTree {
     String inOrderTang() {
         List<SinhVien> students = new ArrayList<>();
         inOrderForRank(root, students);
-        
+
         // Sắp xếp theo rank tăng dần
         students.sort((s1, s2) -> Integer.compare(s1.rank, s2.rank));
-        
+
         StringBuilder sb = new StringBuilder();
         for (SinhVien sv : students) {
             sb.append(sv.toString()).append("\n");
@@ -226,10 +245,10 @@ class AVLTree {
     String inOrderGiam() {
         List<SinhVien> students = new ArrayList<>();
         inOrderForRank(root, students);
-        
+
         // Sắp xếp theo rank giảm dần
         students.sort((s1, s2) -> Integer.compare(s2.rank, s1.rank));
-        
+
         StringBuilder sb = new StringBuilder();
         for (SinhVien sv : students) {
             sb.append(sv.toString()).append("\n");

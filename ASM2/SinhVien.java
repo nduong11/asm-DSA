@@ -1,6 +1,7 @@
-package asm;
+package ASM2;
 
 public class SinhVien {
+
     int id;
     String ten;
     double diem;
@@ -13,11 +14,17 @@ public class SinhVien {
     }
 
     public String getTrangThai() {
-        if (diem < 5) return "Fail";
-        else if (diem < 6.5) return "Medium";
-        else if (diem < 7.5) return "Good";
-        else if (diem < 9) return "Very Good";
-        else return "Excellent";
+        if (diem < 5) {
+            return "Fail"; 
+        }else if (diem < 6.5) {
+            return "Medium"; 
+        }else if (diem < 7.5) {
+            return "Good"; 
+        }else if (diem < 9) {
+            return "Very Good"; 
+        }else {
+            return "Excellent";
+        }
     }
 
     public int getRank() {
@@ -30,10 +37,10 @@ public class SinhVien {
 
     @Override
     public String toString() {
-        return "Rank: " + rank +
-                ", ID: " + id +
-                ", Name: " + ten +
-                ", Score: " + diem +
-                ", Status: " + getTrangThai();
+        return "Rank: " + rank
+                + ", ID: " + id
+                + ", Name: " + ten
+                + ", Score: " + diem
+                + ", Status: " + getTrangThai();
     }
 }

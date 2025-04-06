@@ -1,4 +1,4 @@
-package asm;
+package ASM2;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class SinhVienGUI extends JFrame {
+
     private AVLTree tree = new AVLTree();
     private JTextArea dataArea;
     private TreePanel treeDisplay;
@@ -18,7 +19,7 @@ public class SinhVienGUI extends JFrame {
         JPanel dataPanel = new JPanel(new BorderLayout());
         dataArea = new JTextArea(15, 30);
         dataArea.setEditable(false);
-        
+
         // Sort buttons panel
         JPanel sortPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
         JButton btnTang = new JButton("Sort Ascending");
@@ -27,7 +28,7 @@ public class SinhVienGUI extends JFrame {
         btnGiam.addActionListener(new ActionHandler());
         sortPanel.add(btnTang);
         sortPanel.add(btnGiam);
-        
+
         // Add sort panel to data panel
         JPanel dataContainer = new JPanel(new BorderLayout());
         dataContainer.add(sortPanel, BorderLayout.NORTH);
@@ -61,16 +62,29 @@ public class SinhVienGUI extends JFrame {
     }
 
     private class ActionHandler implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             String command = ((JButton) e.getSource()).getText();
             switch (command) {
-                case "Add": themSinhVien(); break;
-                case "Edit": suaSinhVien(); break;
-                case "Delete": xoaSinhVien(); break;
-                case "Search": timKiemSinhVien(); break;
-                case "Sort Ascending": sapXepTang(); break;
-                case "Sort Descending": sapXepGiam(); break;
+                case "Add":
+                    themSinhVien();
+                    break;
+                case "Edit":
+                    suaSinhVien();
+                    break;
+                case "Delete":
+                    xoaSinhVien();
+                    break;
+                case "Search":
+                    timKiemSinhVien();
+                    break;
+                case "Sort Ascending":
+                    sapXepTang();
+                    break;
+                case "Sort Descending":
+                    sapXepGiam();
+                    break;
             }
         }
     }
@@ -103,8 +117,12 @@ public class SinhVienGUI extends JFrame {
                 String ten = tenField.getText().trim();
                 double diem = Double.parseDouble(diemField.getText());
 
-                if (ten.isEmpty()) throw new IllegalArgumentException("Name cannot be empty!");
-                if (diem < 0 || diem > 10) throw new IllegalArgumentException("Score must be between 0 and 10!");
+                if (ten.isEmpty()) {
+                    throw new IllegalArgumentException("Name cannot be empty!");
+                }
+                if (diem < 0 || diem > 10) {
+                    throw new IllegalArgumentException("Score must be between 0 and 10!");
+                }
 
                 tree.insert(new SinhVien(id, ten, diem));
                 updateUI();
@@ -119,7 +137,9 @@ public class SinhVienGUI extends JFrame {
 
     private void suaSinhVien() {
         String input = JOptionPane.showInputDialog(this, "Enter student ID to edit:");
-        if (input == null || input.trim().isEmpty()) return;
+        if (input == null || input.trim().isEmpty()) {
+            return;
+        }
 
         try {
             int id = Integer.parseInt(input);
@@ -143,8 +163,12 @@ public class SinhVienGUI extends JFrame {
                 String ten = tenField.getText().trim();
                 double diem = Double.parseDouble(diemField.getText());
 
-                if (ten.isEmpty()) throw new IllegalArgumentException("Name cannot be empty!");
-                if (diem < 0 || diem > 10) throw new IllegalArgumentException("Score must be between 0 and 10!");
+                if (ten.isEmpty()) {
+                    throw new IllegalArgumentException("Name cannot be empty!");
+                }
+                if (diem < 0 || diem > 10) {
+                    throw new IllegalArgumentException("Score must be between 0 and 10!");
+                }
 
                 tree.delete(id);
                 tree.insert(new SinhVien(id, ten, diem));
@@ -160,7 +184,9 @@ public class SinhVienGUI extends JFrame {
 
     private void xoaSinhVien() {
         String input = JOptionPane.showInputDialog(this, "Enter student ID to delete:");
-        if (input == null || input.trim().isEmpty()) return;
+        if (input == null || input.trim().isEmpty()) {
+            return;
+        }
 
         try {
             int id = Integer.parseInt(input);
@@ -178,7 +204,9 @@ public class SinhVienGUI extends JFrame {
 
     private void timKiemSinhVien() {
         String input = JOptionPane.showInputDialog(this, "Enter student ID to search:");
-        if (input == null || input.trim().isEmpty()) return;
+        if (input == null || input.trim().isEmpty()) {
+            return;
+        }
 
         try {
             int id = Integer.parseInt(input);

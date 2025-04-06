@@ -1,6 +1,7 @@
-package asm;
+package ASM2;
 
 class Node {
+
     SinhVien sinhVien;
     Node left;
     Node right;
@@ -11,5 +12,3 @@ class Node {
         this.height = 1;
     }
 }
-
-

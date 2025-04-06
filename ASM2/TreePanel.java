@@ -1,9 +1,10 @@
-package asm;
+package ASM2;
 
 import java.awt.*;
 import javax.swing.*;
 
 public class TreePanel extends JPanel {
+
     private AVLTree tree;
 
     public TreePanel(AVLTree tree) {
@@ -23,7 +24,9 @@ public class TreePanel extends JPanel {
     }
 
     private void drawTree(Graphics g, Node node, int x, int y, int hGap) {
-        if (node == null) return;
+        if (node == null) {
+            return;
+        }
 
         g.setColor(Color.WHITE);
         g.fillOval(x - 20, y - 20, 40, 40);
